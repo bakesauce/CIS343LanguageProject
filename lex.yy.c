@@ -341,6 +341,9 @@ void yyfree ( void *  );
 #define YY_AT_BOL() (YY_CURRENT_BUFFER_LVALUE->yy_at_bol)
 
 /* Begin user sect3 */
+
+#define yywrap() (/*CONSTCOND*/1)
+#define YY_SKIP_YYWRAP
 typedef flex_uint8_t YY_CHAR;
 
 FILE *yyin = NULL, *yyout = NULL;
@@ -493,9 +496,10 @@ char *yytext;
 #line 1 "zjs.lex"
 #line 2 "zjs.lex"
 	#include <stdio.h>
-	void printLexeme();
-#line 497 "lex.yy.c"
-#line 498 "lex.yy.c"
+	#include <stdlib.h>
+	#include "zoomjoystrong.tab.h"
+#line 501 "lex.yy.c"
+#line 502 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -712,10 +716,10 @@ YY_DECL
 		}
 
 	{
-#line 8 "zjs.lex"
+#line 10 "zjs.lex"
 
 
-#line 718 "lex.yy.c"
+#line 722 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -784,66 +788,66 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 10 "zjs.lex"
-{ printf("INT\n"); }
+#line 12 "zjs.lex"
+{ yylval = atoi(yytext); return INT; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "zjs.lex"
-{ printf("FLOAT\n"); }
+#line 13 "zjs.lex"
+{ yylval = atoi(yytext); return FLOAT; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 12 "zjs.lex"
-{ printf("END\n"); }
+#line 14 "zjs.lex"
+{ return END; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "zjs.lex"
-{ printf("POINT\n"); }
+#line 15 "zjs.lex"
+{ return POINT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "zjs.lex"
-{ printf("LINE\n"); }
+#line 16 "zjs.lex"
+{ return LINE; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "zjs.lex"
-{ printf("CIRCLE\n"); }
+#line 17 "zjs.lex"
+{ return CIRCLE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 16 "zjs.lex"
-{ printf("RECTANGLE\n"); }
+#line 18 "zjs.lex"
+{ return RECTANGLE; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 17 "zjs.lex"
-{ printf("SET_COLOR\n"); }
+#line 19 "zjs.lex"
+{ return SET_COLOR; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 18 "zjs.lex"
-{ printf("END_STATEMENT\n"); }
+#line 20 "zjs.lex"
+{ return END_STATEMENT; }
 	YY_BREAK
 case 10:
 /* rule 10 can match eol */
 YY_RULE_SETUP
-#line 19 "zjs.lex"
+#line 21 "zjs.lex"
 ;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 20 "zjs.lex"
-{printf("error\t"); printLexeme(); }
+#line 22 "zjs.lex"
+{printf("error\t"); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 22 "zjs.lex"
+#line 24 "zjs.lex"
 ECHO;
 	YY_BREAK
-#line 846 "lex.yy.c"
+#line 850 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1860,16 +1864,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 22 "zjs.lex"
+#line 24 "zjs.lex"
 
-
-int main (int argc, char** argv){
-	yylex();
-	return 0;
-
-}
-
-void printLexeme() {
-	printf("(%s) on line (%d)\n", yytext, yylineno);
-}
 

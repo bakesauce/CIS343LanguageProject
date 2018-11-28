@@ -65,9 +65,10 @@
 #line 1 "zoomjoystrong.y" /* yacc.c:339  */
 
 	#include <stdio.h>
+	#include "zoomjoystrong.h"
 	int yyerror(const char* err);
 
-#line 71 "zoomjoystrong.tab.c" /* yacc.c:339  */
+#line 72 "zoomjoystrong.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -130,7 +131,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 134 "zoomjoystrong.tab.c" /* yacc.c:358  */
+#line 135 "zoomjoystrong.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -428,8 +429,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    18,    18,    21,    22,    25,    26,    27,    28,    29,
-      30,    33,    34
+       0,    19,    19,    22,    23,    26,    27,    28,    29,    30,
+      31,    34,    35
 };
 #endif
 
@@ -1212,7 +1213,7 @@ yyreduce:
   switch (yyn)
     {
       
-#line 1216 "zoomjoystrong.tab.c" /* yacc.c:1648  */
+#line 1217 "zoomjoystrong.tab.c" /* yacc.c:1648  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1440,11 +1441,13 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 36 "zoomjoystrong.y" /* yacc.c:1907  */
+#line 37 "zoomjoystrong.y" /* yacc.c:1907  */
 
 
 int main(int argc, char** argv){
+	setup();	
 	yyparse();
+	finish();
 }
 int yyerror(const char* err){
 	printf("%s\n", err);

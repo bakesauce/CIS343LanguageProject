@@ -1,32 +1,24 @@
 %{
 	#include <stdio.h>
-	void printLexeme();
+	#include <stdlib.h>
+	#include "zoomjoystrong.tab.h"
 %}
 
 %option yylineno
+%option noyywrap
 
 %%
 
-[0-9]+			{ printf("INT\n"); }
-[0-9]*\.[0-9]+	 	{ printf("FLOAT\n"); }
-end			{ printf("END\n"); }
-point			{ printf("POINT\n"); }
-line			{ printf("LINE\n"); }
-circle			{ printf("CIRCLE\n"); }
-rectangle		{ printf("RECTANGLE\n"); }
-set_color		{ printf("SET_COLOR\n"); }
-;			{ printf("END_STATEMENT\n"); }
+[0-9]+			{ yylval = atoi(yytext); return INT; }
+[0-9]*\.[0-9]+	 	{ yylval = atoi(yytext); return FLOAT; }
+end			{ return END; }
+point			{ return POINT; }
+line			{ return LINE; }
+circle			{ return CIRCLE; }
+rectangle		{ return RECTANGLE; }
+set_color		{ return SET_COLOR; }
+;			{ return END_STATEMENT; }
 \n|\t|" "		;
-.			{printf("error\t"); printLexeme(); }
+.			{printf("error\t"); }
 
 %%
-
-int main (int argc, char** argv){
-	yylex();
-	return 0;
-
-}
-
-void printLexeme() {
-	printf("(%s) on line (%d)\n", yytext, yylineno);
-}

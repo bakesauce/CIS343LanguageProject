@@ -1,5 +1,6 @@
 %{
 	#include <stdio.h>
+	#include "zoomjoystrong.h"
 	int yyerror(const char* err);
 %}
 
@@ -36,7 +37,9 @@ value:		INT
 %%
 
 int main(int argc, char** argv){
+	setup();	
 	yyparse();
+	finish();
 }
 int yyerror(const char* err){
 	printf("%s\n", err);
